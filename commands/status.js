@@ -10,7 +10,7 @@ module.exports = {
         ),
     async execute(interaction) {
         const input = interaction.options.getString('input');
-        const bossFiles = fs.readdirSync('../boss/').filter(file => file.endsWith('.json'));
+        const bossFiles = fs.readdirSync('./boss/').filter(file => file.endsWith('.json'));
         const sortBoss = keyword => {
             let boss = bossFiles.filter(b => b.include(keyword))
             if (boss.lengh > 25) {
