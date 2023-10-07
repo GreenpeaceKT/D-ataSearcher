@@ -19,6 +19,7 @@ module.exports = {
         if (boss.lengh == 0) {
             return
         }
+        console.log(boss)
         boss.forEach((file) => {
 
             const json = fs.readFileSync(`./boss/${file}`);
@@ -30,12 +31,14 @@ module.exports = {
                 map: bossMap
             });
         });
+        console.log(menu)
         const ops = menu.map((m)=>{
             new StringSelectMenuOptionBuilder()
                 .setLabel(m.name)
                 .setDescription(m.map)
                 .setValue(m.name)
         })
+        console.log(ops)
 
         const select = new StringSelectMenuBuilder()
             .setCustomId('starter')
