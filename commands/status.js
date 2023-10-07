@@ -34,9 +34,9 @@ module.exports = {
             .setCustomId('starter')
             .setPlaceholder('ボス名を選んでください')
             .addOptions(/*sortBoss(input)*/new StringSelectMenuOptionBuilder()
-                    .setLabel(bossName)
-                    .setDescription(bossMap)
-                    .setValue(bossName));
+                    .setLabel("bossName")
+                    .setDescription("bossMap")
+                    .setValue("bossName"));
 
         const row = new ActionRowBuilder()
             .addComponents(select);
