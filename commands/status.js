@@ -20,7 +20,7 @@ module.exports = {
                 return
             }
             boss.forEach(file => {
-                const json = fs.readFileSync(`../boss/${file}`);
+                const json = fs.readFileSync(`./boss/${file}`);
                 const parsed = JSON.parse(json);
                 const bossName = parsed.name;
                 const bossMap = parsed.map;
