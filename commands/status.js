@@ -48,7 +48,7 @@ module.exports = {
         const row = new ActionRowBuilder()
             .addComponents(select);
 
-        const response = interaction.reply({ components: [row] });
+        const response = await interaction.reply({ components: [row] });
         const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
 
         collector.on('collect', async i => {
