@@ -1,0 +1,19 @@
+{
+    "name": "discordbot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+        "node": "19.6.1",
+        "npm": "9.4.0"
+    },
+    "scripts": {
+        "start": "node index.js"
+    },
+
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "discord.js": "^14.x.x"
+    }
+}
