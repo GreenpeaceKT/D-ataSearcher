@@ -1,5 +1,5 @@
 const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, SlashCommandBuilder } = require('discord.js');
-const fs = require('fs');
+const fs = require('node:fs');
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('status')
@@ -33,7 +33,10 @@ module.exports = {
         const select = new StringSelectMenuBuilder()
             .setCustomId('starter')
             .setPlaceholder('ボス名を選んでください')
-            .addOptions(sortBoss(input));
+            .addOptions(/*sortBoss(input)*/new StringSelectMenuOptionBuilder()
+                    .setLabel(bossName)
+                    .setDescription(bossMap)
+                    .setValue(bossName));
 
         const row = new ActionRowBuilder()
             .addComponents(select);
