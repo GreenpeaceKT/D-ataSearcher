@@ -53,7 +53,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             const selection = i.values[0];
-            await i.editReply(`${i.user} は ${selection}を選択した`);
+            await i.update(`${i.user} は ${selection}を選択した`);
         });
     },
 };
