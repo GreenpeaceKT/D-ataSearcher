@@ -17,8 +17,8 @@ module.exports = {
         });
         let boss = bossFiles.filter(b => b.includes(input));
         if (boss.length >= 26) {
-            boss.slice(0,25)
-        }else if (boss.length === 0){
+            boss.slice(0, 25)
+        } else if (boss.length === 0) {
             return interaction.reply("条件が一致しませんでした。\n入力に間違いがないか確認してください。");
         }
         console.log(boss);
@@ -59,33 +59,27 @@ module.exports = {
         const row = new ActionRowBuilder()
             .addComponents(select);
 
-        if (judgeRow(ops) === null) {
-            interaction.reply("条件が一致しませんでした。\n入力に間違いがないか確認してください。")
-        } else {
-            const response = await interaction.reply({ components: [row] });
-            const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
-            collector.on('collect', async i => {
-                const selection = i.values[0];
-                const json = fs.readFileSync(`./boss/${selection}.json`);
-                const parsed = JSON.parse(json);
-                const statusEmbed = new EmbedBuilder()
-                    .addFields(
-                    {
-                        name: "名前",
-                        value: parsed.name
-                    },
-                    {
-                        name: "場所",
-                        value: parsed.map
-                    },
-                    {
-                        name: "HP [ Normal / Hard ]",
-                        value: parsed.hp + " / " + parsed.hp * 10
-                    })
-                await i.update({ embeds: [statusEmbed], components: [] });
-            });
-        }
-
-
+        const response = await interaction.reply({ components: [row] });
+        const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
+        collector.on('collect', async i => {
+            const selection = i.values[0];
+            const json = fs.readFileSync(`./boss/${selection}.json`);
+            const parsed = JSON.parse(json);
+            const statusEmbed = new EmbedBuilder()
+                .addFields(
+                {
+                    name: "名前",
+                    value: parsed.name
+                },
+                {
+                    name: "場所",
+                    value: parsed.map
+                },
+                {
+                    name: "HP [ Normal / Hard ]",
+                    value: parsed.hp + " / " + parsed.hp * 10
+                })
+            await i.update({ embeds: [statusEmbed], components: [] });
+        });
     },
 };
