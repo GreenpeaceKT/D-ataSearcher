@@ -65,28 +65,27 @@ module.exports = {
         } else {
             const response = await interaction.reply({ components: [row] });
             const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
-            collector.on('collect', async i => {
-                const selection = i.values[0];
-                const json = fs.readFileSync(`./boss/${selection}.json`);
-                const parsed = JSON.parse(json);
-                const statusEmbed = new EmbedBuilder()
-                    .addFields(
-                    {
-                        name: "名前",
-                        value: parsed.name
-                    },
-                    {
-                        name: "場所",
-                        value: parsed.map
-                    },
-                    {
-                        name: "HP [ Normal / Hard ]",
-                        value: parsed.hp + " / " + parsed.hp * 10
-                    })
-                await i.update({ Embeds: [statusEmbed], components: [] });
-            });
         }
-
+        collector.on('collect', async i => {
+            const selection = i.values[0];
+            const json = fs.readFileSync(`./boss/${selection}.json`);
+            const parsed = JSON.parse(json);
+            const statusEmbed = new EmbedBuilder()
+                .addFields(
+                {
+                    name: "名前",
+                    value: parsed.name
+                },
+                {
+                    name: "場所",
+                    value: parsed.map
+                },
+                {
+                    name: "HP [ Normal / Hard ]",
+                    value: parsed.hp + " / " + parsed.hp * 10
+                })
+            await i.update({ embeds: [statusEmbed], components: [] });
+        });
 
     },
 };
