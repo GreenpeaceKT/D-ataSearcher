@@ -34,7 +34,7 @@ module.exports = {
             });
         });
         console.log(menu);
-        const ops = menu.map((m) =>
+        let ops = menu.map((m) =>
             new StringSelectMenuOptionBuilder()
             .setLabel(m.name)
             .setDescription(m.map)
