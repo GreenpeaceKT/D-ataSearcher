@@ -43,9 +43,9 @@ module.exports = {
         console.log(ops);
 
         const judgeRow = (r) => {
-            if (r.lengh >= 26) {
+            if (r.length >= 26) {
                 return r.slice(0, 25);
-            } else if (r.lengh !== 0) {
+            } else if (r.length !== 0) {
                 return r;
             } else {
                 return null;
@@ -67,7 +67,7 @@ module.exports = {
             const collector = response.createMessageComponentCollector({ componentType: ComponentType.StringSelect, time: 3_600_000 });
             collector.on('collect', async i => {
                 const selection = i.values[0];
-                const json = fs.readFileSync(`./boss/${selection}`);
+                const json = fs.readFileSync(`./boss/${selection}.json`);
                 const parsed = JSON.parse(json);
                 const statusEmbed = new EmbedBuilder()
                     .addFields(
